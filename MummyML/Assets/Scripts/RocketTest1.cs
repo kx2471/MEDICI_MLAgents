@@ -10,10 +10,12 @@ public class RocketTest1 : Agent
     private StageManager stageManager;
     private Transform tr;
     private Rigidbody rb;
-
+    public GameObject forwarddir;
+    
+    
     public override void Initialize()
     {
-        MaxStep = 5000;
+        MaxStep = 15000;
 
         stageManager = transform.root.GetComponent<StageManager>();
         tr = GetComponent<Transform>();
@@ -48,16 +50,19 @@ public class RocketTest1 : Agent
 
         //Branch 0 ==> action[0]
         //Branch 1 ==> action[1]
+        
         switch (action[0])
         {
-            case 1: rb.AddForce(new Vector3(0, 0, 1) * 0.5f, ForceMode.Impulse); break; //전진
-            case 2: rb.AddForce(new Vector3(1,0,0) * 0.5f, ForceMode.Impulse); break;//후진
-            case 3: rb.AddForce(new Vector3(0, 1, 0) * 0.5f, ForceMode.Impulse); break;
+            case 1: rb.AddForce(forwarddir.transform.up * 0.5f, ForceMode.Impulse); break; //전진
+            
         }
         switch (action[1])
         {
             case 1: rot = -tr.up; break; //좌회전
             case 2: rot = tr.up; break; //우회전
+            case 3: rot = -tr.right; break;
+            case 4: rot = tr.right; break;
+
         }
         tr.Rotate(rot, Time.fixedDeltaTime * 200);
         rb.AddForce(dir * 0.5f, ForceMode.VelocityChange);
@@ -87,14 +92,7 @@ public class RocketTest1 : Agent
         {
             action[0] = 1; //전진
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-            action[0] = 2; //후진
-        }
-        if (Input.GetKey(KeyCode.U))
-        {
-            action[0] = 3;
-        }
+       
         
 
         //좌우 회전 이동처리 - Branch 1 = (0:무회전, 1:좌회전, 2:우회전);
@@ -105,6 +103,14 @@ public class RocketTest1 : Agent
         if (Input.GetKey(KeyCode.D))
         {
             action[1] = 2; //우회전
+        }
+        if (Input.GetKey(KeyCode.U))
+        {
+            action[1] = 3; //우회전
+        }
+        if (Input.GetKey(KeyCode.J))
+        {
+            action[1] = 4; //우회전
         }
     }
 

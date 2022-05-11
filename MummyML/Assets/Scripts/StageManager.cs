@@ -9,8 +9,8 @@ public class StageManager : MonoBehaviour
     public GameObject badItem;
 
    
-    [Range (10, 50)]
-    public int badItemCount = 40;
+    [Range (10, 70)]
+    public int badItemCount = 70;
 
 
     
