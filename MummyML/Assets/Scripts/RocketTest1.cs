@@ -20,7 +20,7 @@ public class RocketTest1 : Agent
         stageManager = transform.root.GetComponent<StageManager>();
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody>();
-
+        
 
     }
 
@@ -115,11 +115,12 @@ public class RocketTest1 : Agent
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision collision)
     {
         
         if (collision.collider.CompareTag("BAD_ITEM"))
         {
+            
             AddReward(+1.0f);
             Destroy(collision.gameObject);
         }

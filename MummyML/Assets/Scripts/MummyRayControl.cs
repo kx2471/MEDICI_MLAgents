@@ -111,9 +111,9 @@ public class MummyRayControl : Agent
             rb.velocity = rb.angularVelocity = Vector3.zero;
             Destroy(collision.gameObject);
         }
-        if (collision.collider.CompareTag("BAD_ITEM"))
+        if (collision.collider.CompareTag("METEOR"))
         {
-            AddReward(-1.0f);
+            AddReward(-5.0f);
             EndEpisode();
         }
         if (collision.collider.CompareTag("DEAD_ZONE"))

@@ -8,6 +8,8 @@ TagManager:
   - TARGET
   - GOOD_ITEM
   - BAD_ITEM
+  - BUNKER
+  - METEOR
   layers:
   - Default
   - TransparentFX
